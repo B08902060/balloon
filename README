@@ -1,3 +1,10 @@
+## Quick Start 
+```
+scons
+python3 python/ballon_hash.py 
+```
+
+## Origin README
 This is a research protoype of the Balloon space-hard hash function.  The code
 is still a work in progress. Some (not all) of the parts of the code that need
 attention are marked with TODO comments. See the LICENSE file for licensing

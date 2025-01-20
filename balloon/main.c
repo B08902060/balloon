@@ -162,24 +162,24 @@ main (int argc, char *argv[])
     strncpy (blob, verify_blob, BLOB_LEN+1);
 
     if ((error = Balloon_Verify (blob, in, strlen (in)))) {
-      fprintf (stderr, "Balloon_Hash failed with error: %s (%d)\n", error_to_string(error), error);
+      fprintf (stderr, "Balloon_Hash failed with error 1: %s (%d)\n", error_to_string(error), error);
       return -1;
     }
   } else {
-    printf ("t_cost         = %u\n", opts.t_cost);
-    printf ("s_cost         = %u\n", opts.s_cost);
-    printf ("p_cost         = %u\n", opts.n_threads);
-    printf ("passwd         = %s\n", in);
+    fprintf (stderr, "t_cost         = %u\n", opts.t_cost);
+    fprintf (stderr, "s_cost         = %u\n", opts.s_cost);
+    fprintf (stderr, "p_cost         = %u\n", opts.n_threads);
+    fprintf (stderr, "passwd         = %s\n", in);
     if ((error = Balloon_Hash (blob, &opts, in, strlen (in)))) {
-      fprintf (stderr, "Balloon_Hash failed with error: %s (%d)\n", error_to_string(error), error);
+      fprintf (stderr, "Balloon_Hash failed with error 2: %s (%d)\n", error_to_string(error), error);
       return -1;
     }
   }
   const double wall_end = wall_sec ();
   const double wall_diff = wall_end - wall_start;
-  printf("Time total      : %lg\n", wall_diff);
-  printf("Hashes per sec  : %lg\n", (1.0f / wall_diff));
-  printf("Output          : %s\n", blob);
+  fprintf(stderr, "Time total      : %lg\n", wall_diff);
+  fprintf(stderr, "Hashes per sec  : %lg\n", (1.0f / wall_diff));
+  fprintf(stdout, "%s", blob);
   //write_hash (stdout, out, outlen, salt, saltlen, opts.m_cost, opts.t_cost);
 
   // Clean up OpenSSL junk
